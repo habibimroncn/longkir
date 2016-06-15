@@ -1,0 +1,56 @@
+<ion-navbar *navbar>
+  <ion-title>Ongkir</ion-title>
+</ion-navbar>
+
+<ion-content class="ongkir">
+<form [ngFormModel]="dataOngkirku" (submit)="onSubmit($event)">
+<ion-list>
+
+  <ion-item>
+    <ion-label>Propinsi Asal </ion-label>
+       <ion-select [(ngModel)]="propinsi" ngControl="propinsi" (ngModelChange)="onChange($event)" disabled="{{_isDisable}}" required>
+          <ion-option *ngFor="let sq of _sw" value="{{sq.province_id}}">{{sq.province}}</ion-option>
+       </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Kota Asal</ion-label>
+       <ion-select [(ngModel)]="kota" ngControl="kota" (ngModelChange)="onChangeKota($event)" disabled="{{_isSelectedPropinsiAsal}}" required>
+          <ion-option *ngFor="let ds of _swk" value="{{ds.city_id}}">{{ds.type}} {{ds.city_name}}</ion-option>
+       </ion-select>
+  </ion-item>
+  </ion-list>
+  
+  <ion-list>
+  <ion-item>
+    <ion-label>Propinsi Tujuan </ion-label>
+       <ion-select [(ngModel)]="propinsiTujuan" ngControl="propinsiTujuan" (ngModelChange)="onChangeTujuan($event)" disabled="{{_isSelectedKotaAsal}}" required>
+          <ion-option *ngFor="let sqt of _swt" value="{{sqt.province_id}}">{{sqt.province}}</ion-option>
+       </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Kota Tujuan</ion-label>
+       <ion-select [(ngModel)]="kotaTujuan" ngControl="kotaTujuan" (ngModelChange)="onChangeKotaTujuan($event)" disabled="{{_isSelectedPropinsiTujuan}}" required>
+          <ion-option *ngFor="let dst of _swkt" value="{{dst.city_id}}">{{dst.type}} {{dst.city_name}}</ion-option>
+       </ion-select>
+  </ion-item>
+</ion-list>
+
+<ion-list>
+  <ion-item>
+    <ion-label fixed>Berat (gram)</ion-label>
+    <ion-input [(ngModel)]="beratKiriman" ngControl="beratKiriman" (ngModelChange)="onChangebK($event)" type="number" value="" disabled="{{_isSelectedKotaTujuan}}" required></ion-input>
+  </ion-item>
+
+  <ion-item >
+    <ion-label>Kurir</ion-label>
+       <ion-select [(ngModel)]="kurir" ngControl="kurir" (ngModelChange)="onKurirChange($event)" disabled="{{_isInputBerat}}" required>
+          <ion-option *ngFor="let kl of kurirList" value="{{kl.value}}">{{kl.text}}</ion-option>
+       </ion-select>
+  </ion-item>
+</ion-list>
+
+  <div class="text-center">
+    <input type="submit" class="button button-block" name="Submit" value="Lihat Ongkir" [disabled]="_selectedKurir">
+  </div>
+</form>
+</ion-content>
