@@ -17,8 +17,8 @@ export class OngkirPage {
     this._navController = _navController;
     this._http = _http;
     this._fb = _fb;
-    this.api_key = "ae0c312f39b3e1c861d4902b93eceb39";
-    this.hostname = "http://api.rajaongkir.com/starter";
+    this.api_key = "xxxxxxxxxxxxxxxxxxxxxx"; 
+    this.hostname = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
     this.dataOngkirku = this._fb.group({
       propinsi: ["", Validators.required],
